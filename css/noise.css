@@ -1,0 +1,30 @@
+#pattern {
+    background: transparent url('../media/images/dot.png') repeat 0 0;
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    z-index: 1;
+    opacity: 1;
+}
+
+#pattern,
+#background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.noise {
+    z-index: 1;
+}
+
+.fixed-fluid {
+    top: 0;
+    left: 0;
+    opacity: .12;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    pointer-events: none
+}
