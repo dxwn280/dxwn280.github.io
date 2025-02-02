@@ -1,57 +1,83 @@
 <!DOCTYPE html>
-<html onclick="play()" lang="en">
+<html lang="en">
 <head>
     <title>Dawn</title>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/config.css" />
     <link rel="stylesheet" href="css/morquee.css" />
     <link rel="stylesheet" href="css/noise.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script>
-    <script src="js/jquery.marquee.js" type="text/javascript"></script>
-    <script src="js/jquery.clicktoenter.js" type="text/javascript"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="js/jquery.marquee.js"></script>
+    <script src="js/jquery.clicktoenter.js"></script>
 </head>
 
 <body>
-    <div id="enter"><b class="begin">Click to enter</b></div> <!-- the enter part of the site, css does transition where it turns the screen opaque -->
+    <div id="enter"><b onclick="play()" class="begin">Click to enter</b></div>
     <div id="main">
-        <video id="video" src="assets/media/tellem.mp4" loop></video> <!-- the video -->
-        <div class="overlay"> <!-- overlay over the video, needed if its a video, if gif then it isn't required -->
+        <video id="video" height="100%" src="assets/media/nemzz.mp4" loop></video>
+        <div class="overlay">
             <div class="marquee-container">
-                <pre>|<div id="marquee" class="marquee" >dxwnn | 698547842276524072</div>|</pre>
+                <pre>|<div id="marquee" class="marquee">dxwnn | 698547842276524072</div>|</pre>
             </div>
         </div>
-        <div class="social"> <!-- socials part in the middle -->
-            <a href='https://discord.com/users/698547842276524072' target='_blank'><img src='media/images/dc.png' onmouseover="this.src='media/images/dchover.png'" onmouseout="this.src='media/images/dc.png'"></a>
-            <a href='https://github.com/dxwn280' target='_blank'><img src='media/images/github.png' onmouseover="this.src='media/images/githubhover.png'" onmouseout="this.src='media/images/github.png'"></a>
-            <a href='https://flipd.gg/dxwn' target='_blank'><img src='media/images/ogu.png' onmouseover="this.src='media/images/oguhover.png'" onmouseout="this.src='media/images/ogu.png'"></a>
+
+        <div class="social"> 
+            <a href='https://discord.com/users/698547842276524072' target='_blank'>
+                <img src='media/images/dc.png' onmouseover="this.src='media/images/dchover.png'" onmouseout="this.src='media/images/dc.png'">
+            </a>
+            <a href='https://github.com/dxwn280' target='_blank'>
+                <img src='media/images/github.png' onmouseover="this.src='media/images/githubhover.png'" onmouseout="this.src='media/images/github.png'">
+            </a>
+            <a href='https://flipd.gg/dxwn' target='_blank'>
+                <img src='media/images/ogu.png' onmouseover="this.src='media/images/oguhover.png'" onmouseout="this.src='media/images/ogu.png'">
+            </a>
         </div>
+
+        <div class="container" onclick="changeImageOnClick()">
+            <div class="mediacontrol">
+                <img src='media/images/PauseIMG.png' id="PauseAndStart">
+            </div>
+        </div>
+
         <script>
-            // script is needed for marquee to work
-            $('.marquee').marquee({ // ('.marquee') part tells the script where it should work or something
-            duration: 5000,
-            gap: 0,
-            delayBeforeStart: 0,
-            direction: 'left',
-            duplicated: false
+            $('.marquee').marquee({
+                duration: 5000,
+                gap: 0,
+                delayBeforeStart: 0,
+                direction: 'left',
+                duplicated: false
             });
-        </script>
-        <script> //click to start video script
+
             function play() {
                 var video = document.getElementById("video");
                 video.play();
                 video.volume = 0.2;
             }
-        </script>
-        <script> // click to enter script
+
             $('.begin').click(function () {
                 $(this).parent('#enter').fadeOut(1);
             });
+
+            let isPlaying = true;
+            function changeImageOnClick() {
+                var img = document.getElementById("PauseAndStart");
+                var video = document.getElementById("video");
+                
+                if (isPlaying) {
+                    video.pause();
+                    img.src = "media/images/StartIMG.png";
+                } else {
+                    video.play();
+                    img.src = "media/images/PauseIMG.png";
+                }
+                isPlaying = !isPlaying;
+            }
         </script>
-        <div id="pattern"></div><canvas id="noise" class="noise fixed-fluid"></canvas> <!-- grid overlay + the noise -->
-        <script src="js/noise.js" type="text/javascript"></script> <!-- noise script, for some reason it has to be at the end, no idea why -->
+        <div id="pattern"></div>
+        <canvas id="noise" class="noise fixed-fluid"></canvas>
+        <script src="js/noise.js"></script>
     </div>
-    
 </body>
 </html>
