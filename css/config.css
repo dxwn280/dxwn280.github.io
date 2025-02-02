@@ -5,6 +5,10 @@ body {
     background-position: center center
 }
 
+.container{
+  z-index: 3;
+}
+
 .social {
     top: 50%;
     left: 50%;
@@ -22,6 +26,11 @@ body {
     background-position: center top;
     box-shadow: 0 0 40px rgba(0, 0, 0, .85);
     background-color: rgba(0, 0, 0, .4)
+}
+
+.mediacontrol {
+  z-index: 3;
+  left: 50%
 }
 
 .overlay {
